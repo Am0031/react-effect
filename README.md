@@ -5,7 +5,7 @@ It is the illustration code for the hashnode blog article ["Using the React useE
 
 ## Installation
 
-To get this project installed, the following steps are required:
+To get this project installed locally, the following steps are required in your terminal:
 
 Clone the repository, using SSH keys:
 
