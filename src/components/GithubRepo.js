@@ -41,7 +41,10 @@ export const GithubRepo = () => {
 
   return (
     <div style={{ marginLeft: "2rem" }}>
-      <h1>Public repos by user - **This page is managed with useState**</h1>
+      <h1>
+        Public repos by user - **This page is managed with useState and
+        useEffect**
+      </h1>
 
       <div>
         <h2>Search form</h2>
