@@ -6,6 +6,8 @@ export const GithubRepo = () => {
   const [selectedRepo, setSelectedRepo] = useState();
   const [username, setUsername] = useState("");
   const [isSearching, setIsSearching] = useState(false);
+  const [repoCount, setRepoCount] = useState();
+  const [timeStyle, setTimeStyle] = useState("black");
 
   //useEffect for onload repos population
   useEffect(() => {
@@ -19,6 +21,32 @@ export const GithubRepo = () => {
     }
   }, [username, isSearching]);
 
+  //useEffect for repo count
+  useEffect(() => {
+    if (repos) {
+      setRepoCount(repos.length);
+    }
+  }, [repos]);
+
+  //useEffect for selected repo display
+  useEffect(() => {
+    if (selectedRepo) {
+      const updateDay = new Date(selectedRepo.updated_at);
+      const timeframe = Math.floor(
+        (new Date() - updateDay) / (1000 * 3600 * 24)
+      );
+
+      if (timeframe < 7) {
+        setTimeStyle("green");
+      } else if (timeframe < 21) {
+        setTimeStyle("orange");
+      } else {
+        setTimeStyle("red");
+      }
+      //
+    }
+  }, [selectedRepo]);
+
   //function to get repos
   const getRepos = async (username) => {
     const response = await fetch(
@@ -26,13 +54,6 @@ export const GithubRepo = () => {
     ).then((response) => response.json());
     setRepos(response);
   };
-
-  //function to get the info from the form and do the search
-  // const onSubmit = async (event) => {
-  //   event.preventDefault();
-  //   setSelectedRepo();
-  //   getRepos(username);
-  // };
 
   //function to handle input field change
   const handleChange = (event) => {
@@ -78,6 +99,7 @@ export const GithubRepo = () => {
           }}
         >
           <h2>Search results</h2>
+          {repoCount && <h3>{repoCount} repos</h3>}
           {repos && repos.length ? (
             repos.map((item) => {
               return (
@@ -100,7 +122,9 @@ export const GithubRepo = () => {
           {selectedRepo && (
             <>
               <h3>{selectedRepo.name}</h3>
-              <h3>Last updated: {selectedRepo.updated_at}</h3>
+              <h3 style={{ color: `${timeStyle}` }}>
+                Last updated: {selectedRepo.updated_at}
+              </h3>
               <h3>URL: {selectedRepo.url}</h3>
             </>
           )}
