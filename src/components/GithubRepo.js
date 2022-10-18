@@ -17,6 +17,7 @@ export const GithubRepo = () => {
   //useEffect for username change
   useEffect(() => {
     if (isSearching === true) {
+      setSelectedRepo();
       getRepos(username);
     }
   }, [username, isSearching]);
