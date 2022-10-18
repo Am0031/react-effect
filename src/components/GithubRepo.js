@@ -5,11 +5,19 @@ export const GithubRepo = () => {
   const [repos, setRepos] = useState();
   const [selectedRepo, setSelectedRepo] = useState();
   const [username, setUsername] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
 
   //useEffect for onload repos population
   useEffect(() => {
     getRepos("am0031");
   }, []);
+
+  //useEffect for username change
+  useEffect(() => {
+    if (isSearching === true) {
+      getRepos(username);
+    }
+  }, [username, isSearching]);
 
   //function to get repos
   const getRepos = async (username) => {
@@ -20,14 +28,15 @@ export const GithubRepo = () => {
   };
 
   //function to get the info from the form and do the search
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    setSelectedRepo();
-    getRepos(username);
-  };
+  // const onSubmit = async (event) => {
+  //   event.preventDefault();
+  //   setSelectedRepo();
+  //   getRepos(username);
+  // };
 
   //function to handle input field change
   const handleChange = (event) => {
+    if (!isSearching) setIsSearching(true);
     setUsername(event.target.value);
   };
 
@@ -48,7 +57,7 @@ export const GithubRepo = () => {
 
       <div>
         <h2>Search form</h2>
-        <form onSubmit={onSubmit}>
+        <form>
           <input
             style={{ width: "400px" }}
             id="search-input"
@@ -56,7 +65,7 @@ export const GithubRepo = () => {
             placeholder="Enter github username"
             onChange={handleChange}
           ></input>
-          <button id="submit-btn">Search</button>
+          {/* <button id="submit-btn">Search</button> */}
         </form>
       </div>
       <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
