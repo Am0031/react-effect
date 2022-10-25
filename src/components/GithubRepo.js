@@ -9,12 +9,12 @@ export const GithubRepo = () => {
   const [repoCount, setRepoCount] = useState();
   const [timeStyle, setTimeStyle] = useState("black");
 
-  //useEffect for onload repos population
+  //useEffect for onload repos population - useEffect #1
   useEffect(() => {
     getRepos("am0031");
   }, []);
 
-  //useEffect for username change
+  //useEffect for username change - useEffect #2
   useEffect(() => {
     if (isSearching === true) {
       setSelectedRepo();
@@ -22,14 +22,14 @@ export const GithubRepo = () => {
     }
   }, [username, isSearching]);
 
-  //useEffect for repo count
+  //useEffect for repo count - useEffect #3
   useEffect(() => {
     if (repos) {
       setRepoCount(repos.length);
     }
   }, [repos]);
 
-  //useEffect for selected repo display
+  //useEffect for selected repo display - useEffect #4
   useEffect(() => {
     if (selectedRepo) {
       const updateDay = new Date(selectedRepo.updated_at);
@@ -44,7 +44,6 @@ export const GithubRepo = () => {
       } else {
         setTimeStyle("red");
       }
-      //
     }
   }, [selectedRepo]);
 
