@@ -27,3 +27,5 @@ npm run start
 ```
 
 ## Contact
+
+If you have any questions or comment about this project, feel free to contact me by sending me an [email](mailto:amelie.pira@gmail.com).
