@@ -1,7 +1,7 @@
 # React-State
 
-This project is an introduction to the react hook useState.
-It is the illustration code for the hashnode blog article ["Using the React useEffect hook with an API call"]().
+This project is an introduction to the react hook useEffect. It builds on from the useState hook.
+It is the illustration code for the hashnode blog article ["Using the React useEffect hook with an API call"](https://fullstackjslearning.hashnode.dev/using-react-useeffect-hook-with-an-api-call).
 
 ## Installation
 
