@@ -20,7 +20,7 @@ export const GithubRepo = () => {
       setSelectedRepo();
       getRepos(username);
     }
-  }, [username, isSearching]);
+  }, [username]);
 
   //useEffect for repo count - useEffect #3
   useEffect(() => {
